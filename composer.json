@@ -1,6 +1,6 @@
 {
     "name": "hwkdo/intranet-app-zentrale",
-    "description": "Zentrale Ausgabe und \u00dcbergaben f\u00fcr Assets und Fuhrpark",
+    "description": "Zentrale Ausgabe und Übergaben für Assets und Fuhrpark",
     "keywords": [
         "hwkdo",
         "laravel",
@@ -18,13 +18,13 @@
     "require": {
         "php": "^8.3",
         "spatie/laravel-package-tools": "^1.16",
-        "illuminate/contracts": "^10.0||^11.0||^12.0",
-        "illuminate/database": "^10.0||^11.0||^12.0",
-        "illuminate/support": "^10.0||^11.0||^12.0",
+        "illuminate/contracts": "^12.0||^13.0",
+        "illuminate/database": "^12.0||^13.0",
+        "illuminate/support": "^12.0||^13.0",
         "hwkdo/intranet-app-base": "dev-main || ^1.0",
         "hwkdo/intranet-app-assets": "^1.10 || dev-main",
         "hwkdo/intranet-app-fuhrpark": "dev-main || ^0",
-        "spatie/laravel-permission": "^6.16",
+        "spatie/laravel-permission": "^8.0",
         "livewire/livewire": "^4",
         "livewire/volt": "^1.6.7"
     },
