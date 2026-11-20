@@ -17,6 +17,12 @@ mount(function (): void {
 
     if ($user?->can('operate-app-fuhrpark-zentrale') || $user?->can('fuhrpark.operate-desk')) {
         $this->activeTab = 'fuhrpark';
+
+        return;
+    }
+
+    if ($user?->can('operate-app-zentrale-unterschriften')) {
+        $this->activeTab = 'unterschriften';
     }
 });
 
@@ -34,6 +40,9 @@ mount(function (): void {
                 @endif
                 @if (auth()->user()?->can('operate-app-fuhrpark-zentrale') || auth()->user()?->can('fuhrpark.operate-desk'))
                     <flux:tab name="fuhrpark" icon="truck">Fuhrpark</flux:tab>
+                @endif
+                @if (auth()->user()?->can('operate-app-zentrale-unterschriften'))
+                    <flux:tab name="unterschriften" icon="pencil-square">Unterschriften</flux:tab>
                 @endif
             </flux:tabs>
 
@@ -59,16 +68,27 @@ mount(function (): void {
                     </div>
                 </flux:tab.panel>
             @endif
+
+            @if (auth()->user()?->can('operate-app-zentrale-unterschriften'))
+                <flux:tab.panel name="unterschriften">
+                    <div class="mt-4" wire:key="hub-unterschriften-{{ $activeTab }}">
+                        @if ($activeTab === 'unterschriften')
+                            <livewire:intranet-app-zentrale::apps.zentrale.unterschriften />
+                        @endif
+                    </div>
+                </flux:tab.panel>
+            @endif
         </flux:tab.group>
 
         @if (
             ! auth()->user()?->can('see-app-assets-zentrale')
             && ! auth()->user()?->can('operate-app-fuhrpark-zentrale')
             && ! auth()->user()?->can('fuhrpark.operate-desk')
+            && ! auth()->user()?->can('operate-app-zentrale-unterschriften')
         )
             <flux:callout variant="warning" icon="exclamation-triangle" class="mt-4">
                 <flux:callout.text>
-                    Es sind keine Zentrale-Rechte für Assets oder Fuhrpark vorhanden.
+                    Es sind keine Zentrale-Rechte für Assets, Fuhrpark oder Unterschriften vorhanden.
                 </flux:callout.text>
             </flux:callout>
         @endif

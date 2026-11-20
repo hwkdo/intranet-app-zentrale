@@ -13,6 +13,7 @@ return [
                 'see-app-assets-zentrale',
                 'see-app-fuhrpark',
                 'operate-app-fuhrpark-zentrale',
+                'operate-app-zentrale-unterschriften',
             ],
         ],
         'user' => [
@@ -23,6 +24,7 @@ return [
                 'see-app-assets-zentrale',
                 'see-app-fuhrpark',
                 'operate-app-fuhrpark-zentrale',
+                'operate-app-zentrale-unterschriften',
             ],
         ],
     ],

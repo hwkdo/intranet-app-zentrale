@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Hwkdo\IntranetAppZentrale;
 
+use Hwkdo\IntranetAppBase\Data\NotificationTypeDefinition;
 use Hwkdo\IntranetAppBase\Interfaces\IntranetAppInterface;
+use Hwkdo\IntranetAppBase\Interfaces\ProvidesNotificationsInterface;
+use Hwkdo\IntranetAppZentrale\Data\AppSettings;
 use Illuminate\Support\Collection;
 
-class IntranetAppZentrale implements IntranetAppInterface
+class IntranetAppZentrale implements IntranetAppInterface, ProvidesNotificationsInterface
 {
     public static function app_name(): string
     {
@@ -41,11 +44,37 @@ class IntranetAppZentrale implements IntranetAppInterface
 
     public static function appSettingsClass(): ?string
     {
-        return \Hwkdo\IntranetAppZentrale\Data\AppSettings::class;
+        return AppSettings::class;
     }
 
     public static function mcpServers(): array
     {
         return [];
+    }
+
+    public static function notificationTypes(): array
+    {
+        return [
+            new NotificationTypeDefinition(
+                key: 'zentrale.signature_registered',
+                label: 'Unterschrift registriert',
+                appIdentifier: self::identifier(),
+                appName: self::app_name(),
+                description: 'Wenn an der Zentrale eine Unterschrift für Sie registriert wurde.',
+                mandatory: true,
+                defaultChannels: ['inbox', 'mail'],
+                requiredChannels: ['inbox', 'mail'],
+            ),
+            new NotificationTypeDefinition(
+                key: 'zentrale.signature_revoked',
+                label: 'Unterschrift widerrufen',
+                appIdentifier: self::identifier(),
+                appName: self::app_name(),
+                description: 'Wenn an der Zentrale Ihre registrierte Unterschrift widerrufen wurde.',
+                mandatory: true,
+                defaultChannels: ['inbox', 'mail'],
+                requiredChannels: ['inbox', 'mail'],
+            ),
+        ];
     }
 }

@@ -11,9 +11,17 @@
             'label' => 'Zentrale',
             'href' => route('apps.zentrale.index'),
             'icon' => 'building-office',
-            'description' => 'Assets- und Fuhrpark-Zentrale',
+            'description' => 'Ausgabe, Übergaben und Unterschriften',
             'buttonText' => 'Zentrale öffnen',
             'welcomeSection' => 'main',
+        ],
+        [
+            'label' => 'Benachrichtigungen',
+            'href' => route('apps.zentrale.settings.notifications'),
+            'icon' => 'bell',
+            'description' => 'Benachrichtigungen dieser App konfigurieren',
+            'buttonText' => 'Benachrichtigungen öffnen',
+            'welcomeSection' => 'settings',
         ],
         [
             'label' => 'App-Info',
